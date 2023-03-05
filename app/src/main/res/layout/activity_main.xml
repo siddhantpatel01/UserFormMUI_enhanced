@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="190dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            app:startIconDrawable="@drawable/baseline_person_24"
+            android:gravity="center"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Firstname"
+                android:layout_width="match_parent"
+                android:inputType="textCapSentences"
+                android:layout_height="wrap_content"
+                android:hint="First Name"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@+id/username"
+            android:gravity="center"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/Lastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
+                android:hint="Last Name"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/Phone1"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/username"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            app:startIconDrawable="@drawable/baseline_phone_24"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="10"
+                android:inputType="phone"
+                android:hint="Enter your phone number"
+                android:maxLines="1"
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/Phone2"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Phone1"
+            app:startIconDrawable="@drawable/baseline_phone_24"
+            android:layout_margin="10dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="10"
+            android:layout_marginTop="10dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:hint="Enter your alternative phone number"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/Phone2"
+            android:layout_margin="10dp"
+            app:startIconDrawable="@drawable/baseline_email_24"
+            android:layout_marginTop="10dp"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter your email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/radiobutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/email"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/blue_border_rounded_cornwe">
+
+            <RadioGroup
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/male"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/email"
+                    android:layout_marginLeft="10dp"
+                    android:text="Male">
+
+                </com.google.android.material.radiobutton.MaterialRadioButton>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/Female"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="Female">
+
+                </com.google.android.material.radiobutton.MaterialRadioButton>
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/TransGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="TransGender">
+
+                </com.google.android.material.radiobutton.MaterialRadioButton>
+
+            </RadioGroup>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/hobbies"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/radiobutton"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/blue_border_rounded_cornwe"
+            android:gravity="center">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hobbies"></com.google.android.material.textview.MaterialTextView>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/coding"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hobbies"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/blue_border_rounded_cornwe"
+
+
+            >
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Coding" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/readingbook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hobbies"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/coding"
+            android:background="@drawable/blue_border_rounded_cornwe"
+
+
+            >
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Reading Book" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/playing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hobbies"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/readingbook"
+            android:background="@drawable/blue_border_rounded_cornwe"
+
+
+            >
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Playing" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/watchingmovies"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/coding"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/blue_border_rounded_cornwe"
+
+            >
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Watching Movies" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/traveling"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/coding"
+            android:layout_margin="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@id/watchingmovies"
+            android:background="@drawable/blue_border_rounded_cornwe"
+
+
+            >
+
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Traveling" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@id/watchingmovies"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="60dp"
+            android:text="Submit"
+            app:cornerRadius="40dp">
+
+        </com.google.android.material.button.MaterialButton>
+
+
+    </RelativeLayout>
+
+</ScrollView>
