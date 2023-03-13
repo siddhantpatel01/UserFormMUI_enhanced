@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
     var gender: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        //setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -41,6 +41,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         when (view?.id) {
 
             R.id.submit -> {
+                val phone1 = binding.Phone1.editableText.toString()
+                val phone2 = binding.Phone2.editableText.toString()
 
                 if (binding.Firstname.text!!.isEmpty() && binding.Lastname.text!!.isEmpty() && binding.Phone1.editableText.isEmpty() && binding.Phone2.editableText.isEmpty() && binding.email.text!!.isEmpty()) {
                     binding.Firstname.requestFocus()
@@ -68,7 +70,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                     binding.email.requestFocus()
                     Toast.makeText(this, "Please fill your Email name", Toast.LENGTH_SHORT).show()
 
-                } else if (binding.Firstname.text!!.isNotEmpty() && binding.Lastname.text!!.isNotEmpty() && binding.Phone1.editableText.isNotEmpty() && binding.Phone2.editableText.isNotEmpty() && binding.email.text!!.isNotEmpty()) {
+                } else if (gender == null) {
+                    Toast.makeText(this, "Please select your gender", Toast.LENGTH_SHORT).show()
+                }
+                else if (binding.Firstname.text!!.isNotEmpty() && binding.Lastname.text!!.isNotEmpty() && binding.Phone1.editableText.isNotEmpty() && binding.Phone2.editableText.isNotEmpty() && binding.email.text!!.isNotEmpty() && (phone1==phone2)) {
+                    Toast.makeText(this, "Please don't enter the same number", Toast.LENGTH_SHORT).show()
+
+                }
+                else  {
 
                     val intent = Intent(this, UserInformation::class.java)
                     val firstname = binding.Firstname.editableText.toString()
@@ -76,7 +85,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                     val phone1 = binding.Phone1.editableText.toString()
                     val phone2 = binding.Phone2.editableText.toString()
                     val email = binding.email.editableText.toString()
-                    val lst=list.toString().replace("["," ").replace("]"," ")
+                    val lst = list.toString().replace("[", " ").replace("]", " ")
 
 
 
@@ -86,17 +95,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                     intent.putExtra("phone2", phone2)
                     intent.putExtra("email", email)
                     intent.putExtra("gender", gender)
-                    intent.putExtra("hobbies",lst)
+                    intent.putExtra("hobbies", lst)
 
                     startActivity(intent)
 
-
                 }
 
-
             }
-        }
 
+        }
     }
 
     override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
