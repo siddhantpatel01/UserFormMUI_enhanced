@@ -26,15 +26,20 @@ class SharedPrefrenceViewmodel(private val sharedPrefRepo: SharedPreferenceRepo,
         firstName.value = fname
         return firstName
     }
-    fun getLastname(): MutableLiveData<String>{
+    fun getLastname(): MutableLiveData<String> {
         val lname = sharedPrefRepo.getPreference(context).getString(Keys.LNAME, "")
         lastName.value = lname
         return lastName
     }
-    fun getPhoneNo(): MutableLiveData<String>{
-        val phoneNO = sharedPrefRepo.getPreference(context).getString(Keys.MOBNO, "")
-        phoneNumber.value = phoneNO
-        return phoneNumber
+
+    //    fun getPhoneNo(): MutableLiveData<String>{
+//        val phoneNO = sharedPrefRepo.getPreference(context).getString(Keys.MOBNO, "")
+//        phoneNumber.value = phoneNO
+//        return phoneNumber
+//    }
+    fun getPhone(): String {
+        val phoneNo = sharedPrefRepo.getPreference(context).getString(Keys.MOBNO, "")
+        return phoneNo!!
     }
 //    fun goLogin(){
 //        if(baseObservable.height.equals(getPhoneNo())){

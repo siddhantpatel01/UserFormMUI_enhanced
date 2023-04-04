@@ -45,7 +45,7 @@ class SignUp : AppCompatActivity(), View.OnClickListener {
         binding.signUp.setOnClickListener {
             Toast.makeText(this, "successfully registered", Toast.LENGTH_LONG).show()
             viewmodel.saveData(binding.Firstname.text.toString(), binding.Lastname.text.toString(),binding.Phone1.text.toString())
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, SignIn::class.java))
         }
 
     }

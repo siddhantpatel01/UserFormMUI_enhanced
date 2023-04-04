@@ -19,7 +19,7 @@ class SignIn : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivitySignInBinding
     lateinit var viewmodelFactory: SharedPrefViewmodelFactory
     lateinit var viewmodel: SharedPrefrenceViewmodel
-    lateinit var Goforlogin : String
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,23 +41,13 @@ class SignIn : AppCompatActivity(), View.OnClickListener {
 
         viewmodel.getFirstname()
         viewmodel.getLastname()
-        viewmodel.getPhoneNo()
 
-
-
-//        viewmodel.errormessage.observe(this, Observer {
-//            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
-//            goForlogin = it
-//        })
-
-        viewmodel.getPhoneNo()
-        viewmodel.phoneNumber.observe(this, Observer {
-             Goforlogin = it
-        })
 
         binding.signIn.setOnClickListener {
-           if(Goforlogin == binding.Phone1.text.toString()){
+           if(binding.Phone.editText?.text.toString().equals(viewmodel.getPhone())){
                startActivity(Intent(this, MainActivity::class.java))
+           }else {
+               Toast.makeText(this, "${binding.Phone.editText?.text.toString()} not registered", Toast.LENGTH_SHORT).show()
            }
         }
     }
