@@ -8,6 +8,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.example.userformmui.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnCheckedChangeListener,
@@ -21,6 +22,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
+//        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.white));// set status background white
         // This peace of code for Submit Button
         binding.submit.setOnClickListener(this)
 
