@@ -25,15 +25,9 @@ class SignIn : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         binding = ActivitySignInBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        getSupportActionBar()?.hide();
-        getWindow().getDecorView()
-            .setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
-        getWindow().setStatusBarColor(
-            ContextCompat.getColor(
-                this,
-                R.color.white
-            )
-        );// set status background white
+        supportActionBar?.hide()
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR//  set status text dark
+        window.statusBarColor = ContextCompat.getColor(this, R.color.white) // set status background white
         binding.skip.setOnClickListener(this)
         binding.dontAccount.setOnClickListener(this)
         viewmodelFactory = SharedPrefViewmodelFactory(SharedPreferenceRepo,this)
@@ -42,9 +36,15 @@ class SignIn : AppCompatActivity(), View.OnClickListener {
         viewmodel.getFirstname()
         viewmodel.getLastname()
 
+        viewmodel.errormessage.observe(this, Observer {
+            Toast.makeText(this, "$it", Toast.LENGTH_SHORT).show()
+        })
 
         binding.signIn.setOnClickListener {
-           if(binding.Phone.editText?.text.toString().equals(viewmodel.getPhone())){
+            if (binding.Phone1.text!!.isEmpty()){
+                Toast.makeText(this, "Please enter phone number", Toast.LENGTH_SHORT).show()
+            }
+           else if(binding.Phone.editText?.text.toString() == viewmodel.getPhone()){
                startActivity(Intent(this, MainActivity::class.java))
            }else {
                Toast.makeText(this, "${binding.Phone.editText?.text.toString()} not registered", Toast.LENGTH_SHORT).show()

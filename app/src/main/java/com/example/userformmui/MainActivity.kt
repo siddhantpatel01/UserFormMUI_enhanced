@@ -2,6 +2,7 @@ package com.example.userformmui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
 import android.view.View
 import android.widget.CompoundButton
 import android.widget.RadioButton
@@ -9,6 +10,7 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.MenuCompat
 import com.example.userformmui.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnCheckedChangeListener,
@@ -36,6 +38,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         binding.movies.setOnCheckedChangeListener(this)
         binding.Playing.setOnCheckedChangeListener(this)
         binding.traveling.setOnCheckedChangeListener(this)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.option_menu, menu)
+
+        MenuCompat.setGroupDividerEnabled(menu!!, true)//add horizontal divider
+        return super.onCreateOptionsMenu(menu)
+
     }
 
     override fun onClick(view: View) {

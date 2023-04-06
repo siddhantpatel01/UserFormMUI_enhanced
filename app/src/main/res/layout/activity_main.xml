@@ -187,7 +187,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hobbies"
+                android:text="Course"
                 android:textColor="@color/white"
                 >
 
@@ -201,9 +201,6 @@
             android:layout_below="@id/hobbies"
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/blue_border_rounded_cornwe"
-
-
             >
 
             <com.google.android.material.checkbox.MaterialCheckBox
@@ -211,7 +208,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Coding" />
+                android:text="B-Tech" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -223,9 +220,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@id/codingLayout"
-            android:background="@drawable/blue_border_rounded_cornwe"
-
-
             >
 
             <com.google.android.material.checkbox.MaterialCheckBox
@@ -233,7 +227,7 @@
                 android:layout_width="130dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Reading Book" />
+                android:text="BCA" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -245,8 +239,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@id/readingbookLayout"
-            android:background="@drawable/blue_border_rounded_cornwe"
-
 
             >
 
@@ -255,7 +247,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Playing" />
+                android:text="MBBS" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -266,8 +258,6 @@
             android:layout_margin="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/blue_border_rounded_cornwe"
-
             >
 
             <com.google.android.material.checkbox.MaterialCheckBox
@@ -275,7 +265,7 @@
                 android:layout_width="170dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Watching Movies" />
+                android:text="POLYTECHNIC" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -287,9 +277,6 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:layout_toRightOf="@id/watchingmoviesLayout"
-            android:background="@drawable/blue_border_rounded_cornwe"
-
-
             >
 
             <com.google.android.material.checkbox.MaterialCheckBox
@@ -297,7 +284,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/traveling"
                 android:gravity="center"
-                android:text="Traveling" />
+                android:text="BAMS" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.button.MaterialButton

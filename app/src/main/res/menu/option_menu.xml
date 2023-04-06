@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/aboutDeveloper">
+        <item
+            android:id="@+id/logout"
+            android:title="Log out" />
+    </group>
+
+    <group android:id="@+id/aboutBmi">
+        <item
+            android:id="@+id/Student_info"
+            android:title="Students info" />
+
+    </group>
+</menu>
