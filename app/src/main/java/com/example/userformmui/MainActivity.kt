@@ -2,6 +2,7 @@ package com.example.userformmui
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable.Factory
 import android.view.Menu
 import android.view.View
 import android.widget.CompoundButton
@@ -11,12 +12,19 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.MenuCompat
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.userformmui.Factory.Sqlite_Factory
+import com.example.userformmui.Model.SqlViewModel
 import com.example.userformmui.databinding.ActivityMainBinding
+import com.example.userformmui.repository.Sqlite_DB_Repo
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnCheckedChangeListener,
     CompoundButton.OnCheckedChangeListener {
     private lateinit var binding: ActivityMainBinding
     val list: ArrayList<String> = ArrayList()
+    lateinit var Factory : Sqlite_Factory
+    lateinit var ViewModel : SqlViewModel
     var gender: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +46,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         binding.movies.setOnCheckedChangeListener(this)
         binding.Playing.setOnCheckedChangeListener(this)
         binding.traveling.setOnCheckedChangeListener(this)
+
+        Factory = Sqlite_Factory(Sqlite_DB_Repo(this))
+        ViewModel = ViewModelProvider(this, Factory)[SqlViewModel::class.java]
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -72,7 +84,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                     binding.Phone1.requestFocus()
                     Toast.makeText(this, "Please fill your Phone Number name", Toast.LENGTH_SHORT)
                         .show()
-                } else if (binding.Phone2.editableText.isEmpty()) {
+                }/* else if (binding.Phone2.editableText.isEmpty()) {
                     binding.Phone2.requestFocus()
                     Toast.makeText(
                         this,
@@ -89,10 +101,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                 else if (binding.Firstname.text!!.isNotEmpty() && binding.Lastname.text!!.isNotEmpty() && binding.Phone1.editableText.isNotEmpty() && binding.Phone2.editableText.isNotEmpty() && binding.email.text!!.isNotEmpty() && (phone1==phone2)) {
                     Toast.makeText(this, "Please don't enter the same number", Toast.LENGTH_SHORT).show()
 
-                }
+                }*/
                 else  {
 
-                    val intent = Intent(this, UserInformation::class.java)
+                   /* val intent = Intent(this, UserInformation::class.java)
                     val firstname = binding.Firstname.editableText.toString()
                     val lastname = binding.Lastname.editableText.toString()
                     val phone1 = binding.Phone1.editableText.toString()
@@ -109,11 +121,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                     intent.putExtra("email", email)
                     intent.putExtra("gender", gender)
                     intent.putExtra("hobbies", lst)
+*/
 
-                    startActivity(intent)
+                    ViewModel.createData(
+                        binding.username.editText?.text.toString(),
+                        binding.UserLastname.editText?.text.toString(),
+                        binding.Phone.editText?.text.toString()
+                    )
 
                 }
-
             }
 
         }
