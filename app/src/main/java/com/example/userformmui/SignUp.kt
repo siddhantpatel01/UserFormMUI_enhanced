@@ -40,6 +40,8 @@ class SignUp : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSele
 
        // binding.lifecycleOwner = this
 
+        /*Adapter : - Adapter is a bridge element between data and view
+        * Spinner and autoComplete & Multi AutoComplete  : - are uses ArrayAdapter*/
         val dataAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data)
         binding.spinner.adapter = dataAdapter
         binding.spinner.onItemSelectedListener = this
