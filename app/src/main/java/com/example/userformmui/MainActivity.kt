@@ -2,21 +2,23 @@ package com.example.userformmui
 
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable.Factory
+import android.util.Log
 import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.CompoundButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.MenuCompat
-import androidx.lifecycle.ViewModel
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.userformmui.Factory.Sqlite_Factory
 import com.example.userformmui.Model.SqlViewModel
 import com.example.userformmui.databinding.ActivityMainBinding
+import com.example.userformmui.databinding.ActivityStudentInfoBinding
 import com.example.userformmui.repository.Sqlite_DB_Repo
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnCheckedChangeListener,
@@ -24,13 +26,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
     private lateinit var binding: ActivityMainBinding
     val list: ArrayList<String> = ArrayList()
     lateinit var Factory : Sqlite_Factory
+
     lateinit var ViewModel : SqlViewModel
     var gender: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.activity_main)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
 //        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
 //        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.white));// set status background white
@@ -49,6 +50,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
 
         Factory = Sqlite_Factory(Sqlite_DB_Repo(this))
         ViewModel = ViewModelProvider(this, Factory)[SqlViewModel::class.java]
+        val ListofStudent = ViewModel.getAllData()
+        Log.d("ListofStudent", "onCreate: $ListofStudent ")
+
+
+
+
 
     }
 
@@ -59,6 +66,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         return super.onCreateOptionsMenu(menu)
 
     }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.Student_info ->{
+                val intent = Intent(this, Student_info_Activity::class.java)
+                startActivity(intent)
+                return true
+            }
+        }
+        return true
+    }
+
 
     override fun onClick(view: View) {
 
@@ -102,26 +121,26 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                     Toast.makeText(this, "Please don't enter the same number", Toast.LENGTH_SHORT).show()
 
                 }*/
-                else  {
+                else {
 
-                   /* val intent = Intent(this, UserInformation::class.java)
-                    val firstname = binding.Firstname.editableText.toString()
-                    val lastname = binding.Lastname.editableText.toString()
-                    val phone1 = binding.Phone1.editableText.toString()
-                    val phone2 = binding.Phone2.editableText.toString()
-                    val email = binding.email.editableText.toString()
-                    val lst = list.toString().replace("[", " ").replace("]", " ")
+                    /* val intent = Intent(this, UserInformation::class.java)
+                     val firstname = binding.Firstname.editableText.toString()
+                     val lastname = binding.Lastname.editableText.toString()
+                     val phone1 = binding.Phone1.editableText.toString()
+                     val phone2 = binding.Phone2.editableText.toString()
+                     val email = binding.email.editableText.toString()
+                     val lst = list.toString().replace("[", " ").replace("]", " ")
 
 
 
-                    intent.putExtra("firstname", firstname)
-                    intent.putExtra("lastname", lastname)
-                    intent.putExtra("phone1", phone1)
-                    intent.putExtra("phone2", phone2)
-                    intent.putExtra("email", email)
-                    intent.putExtra("gender", gender)
-                    intent.putExtra("hobbies", lst)
-*/
+                     intent.putExtra("firstname", firstname)
+                     intent.putExtra("lastname", lastname)
+                     intent.putExtra("phone1", phone1)
+                     intent.putExtra("phone2", phone2)
+                     intent.putExtra("email", email)
+                     intent.putExtra("gender", gender)
+                     intent.putExtra("hobbies", lst)
+ */
 
                     ViewModel.createData(
                         binding.username.editText?.text.toString(),

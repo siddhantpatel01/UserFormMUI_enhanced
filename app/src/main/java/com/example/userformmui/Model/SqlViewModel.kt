@@ -7,4 +7,7 @@ class SqlViewModel(private val repository: Sqlite_DB_Repo) : ViewModel()/*Inheri
     fun createData(fName: String, lName: String, phone: String ){
         repository.createData(fName, lName, phone)
     }
+    fun getAllData():ArrayList<Student_Info> {
+        return repository.getAllData()
+    }
 }
