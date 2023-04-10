@@ -16,14 +16,17 @@ import androidx.core.view.MenuCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.userformmui.Factory.Sqlite_Factory
+import com.example.userformmui.Model.SharedPrefrenceViewmodel
 import com.example.userformmui.Model.SqlViewModel
 import com.example.userformmui.databinding.ActivityMainBinding
 import com.example.userformmui.databinding.ActivityStudentInfoBinding
+import com.example.userformmui.repository.SharedPreferenceRepo
 import com.example.userformmui.repository.Sqlite_DB_Repo
 
 class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnCheckedChangeListener,
     CompoundButton.OnCheckedChangeListener {
     private lateinit var binding: ActivityMainBinding
+    lateinit var viewmodel: SharedPrefrenceViewmodel
     val list: ArrayList<String> = ArrayList()
     lateinit var Factory : Sqlite_Factory
 
@@ -53,10 +56,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         val ListofStudent = ViewModel.getAllData()
         Log.d("ListofStudent", "onCreate: $ListofStudent ")
 
-
-
-
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -74,6 +73,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                 startActivity(intent)
                 return true
             }
+            R.id.logout ->{
+                startActivity(Intent(this,SignIn::class.java))
+            }
         }
         return true
     }
@@ -85,8 +87,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         when (view?.id) {
 
             R.id.submit -> {
-                val phone1 = binding.Phone1.editableText.toString()
-                val phone2 = binding.Phone2.editableText.toString()
+
 
                 if (binding.Firstname.text!!.isEmpty() && binding.Lastname.text!!.isEmpty() && binding.Phone1.editableText.isEmpty() && binding.Phone2.editableText.isEmpty() && binding.email.text!!.isEmpty()) {
                     binding.Firstname.requestFocus()

@@ -40,6 +40,7 @@ class SignIn : AppCompatActivity(), View.OnClickListener {
             Toast.makeText(this, "$it", Toast.LENGTH_SHORT).show()
         })
 
+
         binding.signIn.setOnClickListener {
             if (binding.Phone1.text!!.isEmpty()){
                 Toast.makeText(this, "Please enter phone number", Toast.LENGTH_SHORT).show()
