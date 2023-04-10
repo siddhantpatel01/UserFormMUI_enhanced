@@ -60,7 +60,6 @@ class Sqlite_DB_Repo(private val context: Context) {
                 val Student = Student_Info(SRNO,FirstName,LastName,phone)
                 listofStudent.add(Student)
 
-
             }while (cursor.moveToNext())
         }else{
             Toast.makeText(context, "Something went wrong.", Toast.LENGTH_SHORT).show()
