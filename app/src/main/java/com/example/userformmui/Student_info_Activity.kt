@@ -91,17 +91,14 @@ class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickLi
                 windowManager.height = ActionBar.LayoutParams.WRAP_CONTENT
                 dialog.window?.attributes = windowManager
                 dialog.show()
-//                if(layoutCustomBinding.male.equals(genders)){
-//                    layoutCustomBinding.male.setText(genders)
-//                }
-//                else if(layoutCustomBinding.Female.equals(genders)){
-//                    layoutCustomBinding.Female.setText(genders)
-//
-//                }
-//                else{
-//                    layoutCustomBinding.TransGender.setText(genders)
-//
-//                }
+                if(tempGender.equals("male", true)){
+                    layoutCustomBinding.male.isChecked = true
+                }
+                else if(tempGender.equals("male", true)){
+                    layoutCustomBinding.Female.isChecked = true
+                }else{
+                    layoutCustomBinding.TransGender.isChecked = true
+                }
                 layoutCustomBinding.Firstname.setText(FirstName)
                 layoutCustomBinding.Lastname.setText(LastName)
                 layoutCustomBinding.Phone1.setText(phone)
@@ -111,18 +108,19 @@ class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickLi
 
 
                 layoutCustomBinding.radioButton.setOnCheckedChangeListener { radioGroup, i ->
-                    when (radioGroup?.checkedRadioButtonId) {
+                    val id = radioGroup.checkedRadioButtonId
+                    when (id) {
                         R.id.male -> {
-                            val rbMale = findViewById<RadioButton>(i)
-                            tempGender = rbMale.text.toString()
+                            val tempMale = dialog.findViewById<RadioButton>(id)
+                            tempGender = tempMale.text.toString()
                         }
                         R.id.Female -> {
-                            val rbFemale = findViewById<RadioButton>(i)
-                            tempGender = rbFemale.text.toString()
+                            val tempFemale = dialog.findViewById<RadioButton>(id)
+                            tempGender = tempFemale.text.toString()
                         }
                         R.id.TransGender -> {
-                            val rbtransgender = findViewById<RadioButton>(i)
-                            tempGender = rbtransgender.text.toString()
+                            val tempTrans = dialog.findViewById<RadioButton>(id)
+                            tempGender = tempTrans.text.toString()
                         }
 
                     }
