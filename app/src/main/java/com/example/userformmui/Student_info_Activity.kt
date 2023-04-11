@@ -1,12 +1,12 @@
 package com.example.userformmui
 
-import android.app.ActionBar
-import android.app.Dialog
-import android.database.Cursor
 import android.os.Bundle
-import android.view.*
+import android.view.ContextMenu
+import android.view.MenuItem
+import android.view.View
 import android.widget.AdapterView
-import android.widget.Toast
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -18,8 +18,7 @@ import com.example.userformmui.databinding.ActivityMainBinding
 import com.example.userformmui.databinding.ActivityStudentInfoBinding
 import com.example.userformmui.repository.*
 
-class Student_info_Activity : AppCompatActivity(),
-    AdapterView.OnItemLongClickListener {
+class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
 
     private lateinit var ViewModel: SqlViewModel
     lateinit var Factory: Sqlite_Factory
@@ -124,6 +123,10 @@ class Student_info_Activity : AppCompatActivity(),
         val listOfStudents = getAllData()
         val myAdapter = ListViewAdapter(listOfStudents)
         binding.listViewUserInfo.adapter = myAdapter
+        registerForContextMenu(binding.listViewUserInfo)
+        binding.listViewUserInfo.setOnItemLongClickListener(this)
+
+       // binding.listViewUserInfo.setOnItemClickListener(this)
     }
     fun getAllData(): ArrayList<Student_Info>{
         cursor = ViewModel.getData()
