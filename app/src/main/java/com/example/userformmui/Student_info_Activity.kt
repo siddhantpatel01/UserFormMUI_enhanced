@@ -1,12 +1,14 @@
 package com.example.userformmui
 
+import android.app.ActionBar
+import android.app.Dialog
+import android.database.Cursor
 import android.os.Bundle
 import android.view.ContextMenu
 import android.view.MenuItem
 import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.ListView
+import android.view.WindowManager
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -18,7 +20,8 @@ import com.example.userformmui.databinding.ActivityMainBinding
 import com.example.userformmui.databinding.ActivityStudentInfoBinding
 import com.example.userformmui.repository.*
 
-class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickListener {
+class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickListener,
+    RadioGroup.OnCheckedChangeListener {
 
     private lateinit var ViewModel: SqlViewModel
     lateinit var Factory: Sqlite_Factory
@@ -75,7 +78,7 @@ class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickLi
                 val altPhones = cursor.getString(4)
                 val emails = cursor.getString(5)
                 val genders = cursor.getString(6)
-
+                var tempGender = genders
 
 
                 val layoutCustomBinding = ActivityMainBinding.inflate(layoutInflater)
@@ -88,19 +91,51 @@ class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickLi
                 windowManager.height = ActionBar.LayoutParams.WRAP_CONTENT
                 dialog.window?.attributes = windowManager
                 dialog.show()
-
+//                if(layoutCustomBinding.male.equals(genders)){
+//                    layoutCustomBinding.male.setText(genders)
+//                }
+//                else if(layoutCustomBinding.Female.equals(genders)){
+//                    layoutCustomBinding.Female.setText(genders)
+//
+//                }
+//                else{
+//                    layoutCustomBinding.TransGender.setText(genders)
+//
+//                }
                 layoutCustomBinding.Firstname.setText(FirstName)
                 layoutCustomBinding.Lastname.setText(LastName)
                 layoutCustomBinding.Phone1.setText(phone)
                 layoutCustomBinding.Phone2.setText(altPhones) // RUN
                 layoutCustomBinding.email.setText(emails)
-                genders!!
+
+
+
+                layoutCustomBinding.radioButton.setOnCheckedChangeListener { radioGroup, i ->
+                    when (radioGroup?.checkedRadioButtonId) {
+                        R.id.male -> {
+                            val rbMale = findViewById<RadioButton>(i)
+                            tempGender = rbMale.text.toString()
+                        }
+                        R.id.Female -> {
+                            val rbFemale = findViewById<RadioButton>(i)
+                            tempGender = rbFemale.text.toString()
+                        }
+                        R.id.TransGender -> {
+                            val rbtransgender = findViewById<RadioButton>(i)
+                            tempGender = rbtransgender.text.toString()
+                        }
+
+                    }
+                }
+
+               // genders!!
 
 
                 layoutCustomBinding.submit.setOnClickListener {
                     ViewModel.updateData(layoutCustomBinding.username.editText?.text.toString(),
                         layoutCustomBinding.UserLastname.editText?.text.toString(), layoutCustomBinding.Phone.editText?.text.toString(),
-                        layoutCustomBinding.Phone.editText?.text.toString(),layoutCustomBinding.emaillayout.editText?.text.toString(),genders!!,rowId)
+                        layoutCustomBinding.Phone.editText?.text.toString(),layoutCustomBinding.emaillayout.editText?.text.toString(),
+                        tempGender,rowId)
                     setListview()
                     dialog.dismiss()
                 }
@@ -153,4 +188,23 @@ class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickLi
     }
 
 
-}
+        override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+            when (group?.checkedRadioButtonId) {
+                R.id.male -> {
+                    val rbMale = findViewById<RadioButton>(checkedId)
+                    gender = rbMale.text.toString()
+                }
+                R.id.Female -> {
+                    val rbFemale = findViewById<RadioButton>(checkedId)
+                    gender = rbFemale.text.toString()
+                }
+                R.id.TransGender -> {
+                    val rbtransgender = findViewById<RadioButton>(checkedId)
+                    gender = rbtransgender.text.toString()
+                }
+
+            }
+        }
+    }
+
+
