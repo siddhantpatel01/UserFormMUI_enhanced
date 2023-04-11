@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
     lateinit var viewmodel: SharedPrefrenceViewmodel
     val list: ArrayList<String> = ArrayList()
     lateinit var Factory : Sqlite_Factory
-
     lateinit var ViewModel : SqlViewModel
     var gender: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -146,7 +145,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                     ViewModel.createData(
                         binding.username.editText?.text.toString(),
                         binding.UserLastname.editText?.text.toString(),
-                        binding.Phone.editText?.text.toString()
+                        binding.Phone.editText?.text.toString(),
+                        binding.PhoneA.editText?.text.toString(),
+                        binding.emaillayout.editText?.text.toString(),
+                        gender!!
                     )
 
                 }
