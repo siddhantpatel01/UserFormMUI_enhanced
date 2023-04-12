@@ -5,6 +5,8 @@ class Keys {
         val FNAME = "fName"
         val LNAME = "lName"
         val MOBNO = "phonenumber"
+        val Usertype = "usertype"
+
 
     }
 }

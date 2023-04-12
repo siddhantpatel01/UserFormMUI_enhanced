@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.MenuCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import com.example.userformmui.Factory.SharedPrefViewmodelFactory
 import com.example.userformmui.Factory.Sqlite_Factory
 import com.example.userformmui.Model.SharedPrefrenceViewmodel
 import com.example.userformmui.Model.SqlViewModel
@@ -28,6 +29,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
     private lateinit var binding: ActivityMainBinding
     lateinit var viewmodel: SharedPrefrenceViewmodel
     val list: ArrayList<String> = ArrayList()
+    lateinit var viewmodelFactory: SharedPrefViewmodelFactory
+    //lateinit var viewmodel: SharedPrefrenceViewmodel
     lateinit var Factory : Sqlite_Factory
     lateinit var ViewModel : SqlViewModel
     var gender: String? = null
@@ -47,6 +50,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         binding.Coding.setOnCheckedChangeListener(this)
         binding.readingBook.setOnCheckedChangeListener(this)
         binding.movies.setOnCheckedChangeListener(this)
+        viewmodelFactory = SharedPrefViewmodelFactory(SharedPreferenceRepo,this)
+        viewmodel = ViewModelProvider(this, viewmodelFactory)[SharedPrefrenceViewmodel::class.java]
+
         binding.Playing.setOnCheckedChangeListener(this)
         binding.traveling.setOnCheckedChangeListener(this)
 
@@ -54,6 +60,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         ViewModel = ViewModelProvider(this, Factory)[SqlViewModel::class.java]
         val ListofStudent = ViewModel.getAllData()
         Log.d("ListofStudent", "onCreate: $ListofStudent ")
+        binding.usertype.setText(viewmodel.getUsertpe()).toString()
+
 
     }
 

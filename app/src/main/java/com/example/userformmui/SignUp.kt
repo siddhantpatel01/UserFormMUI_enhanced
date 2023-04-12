@@ -18,6 +18,7 @@ class SignUp : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSele
     private lateinit var binding: ActivitySignUpBinding
     lateinit var viewmodelFactory: SharedPrefViewmodelFactory
     lateinit var viewmodel: SharedPrefrenceViewmodel
+    var userTypess :String = ""
     val data = arrayOf("Guest", "HR", "Admin", "Consultant" , )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +60,9 @@ class SignUp : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSele
                 viewmodel.saveData(
                     binding.Firstname.text.toString(),
                     binding.Lastname.text.toString(),
-                    binding.Phone1.text.toString()
+                    binding.Phone1.text.toString(),
+                    userTypess!!
+
                 )
                 startActivity(Intent(this, SignIn::class.java))
             }
@@ -84,6 +87,7 @@ class SignUp : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSele
 
     override fun onItemSelected(adapter: AdapterView<*>?, view: View?, position: Int, id: Long) {
         val data = adapter?.getItemAtPosition(position)
+        userTypess = data.toString()
         Toast.makeText(this, "You are selected $data", Toast.LENGTH_SHORT).show()
     }
 

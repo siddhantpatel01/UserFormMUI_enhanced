@@ -18,10 +18,11 @@ class SharedPrefrenceViewmodel(private val sharedPrefRepo: SharedPreferenceRepo,
     var baseObservable : Observables = Observables()
     var errormessage : MutableLiveData<String> = MutableLiveData()
 
-    fun saveData(fname: String, lname: String ,phonenumber:String ){
+    fun saveData(fname: String, lname: String ,phonenumber:String ,userTypess: String){
         sharedPrefRepo.getPreference(context).edit().putString(Keys.FNAME, fname).commit()
         sharedPrefRepo.getPreference(context).edit().putString(Keys.LNAME, lname).commit()
         sharedPrefRepo.getPreference(context).edit().putString(Keys.MOBNO,phonenumber).commit()
+        sharedPrefRepo.getPreference(context).edit().putString(Keys.Usertype,userTypess).commit()
     }
 
     fun getFirstname(): MutableLiveData<String> {
@@ -40,6 +41,12 @@ class SharedPrefrenceViewmodel(private val sharedPrefRepo: SharedPreferenceRepo,
         val phoneNo = sharedPrefRepo.getPreference(context).getString(Keys.MOBNO, "")
         return phoneNo!!
     }
+
+    fun getUsertpe(): String {
+        val usertype = sharedPrefRepo.getPreference(context).getString(Keys.Usertype, "")
+        return usertype!!
+    }
+
 
 //    fun validation(context: Context,intent: Intent){
 //        if(baseObservable.firstname.isBlank()){
