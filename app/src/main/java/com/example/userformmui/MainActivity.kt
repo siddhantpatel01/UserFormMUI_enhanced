@@ -83,6 +83,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
             R.id.logout ->{
                 startActivity(Intent(this,SignIn::class.java))
             }
+            R.id.recycler_view ->{
+                startActivity(Intent(this,Recycler_View::class.java))
+            }
         }
         return true
     }

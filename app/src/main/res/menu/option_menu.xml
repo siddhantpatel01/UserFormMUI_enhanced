@@ -12,4 +12,10 @@
             android:title="Students info" />
 
     </group>
+    <group android:id="@+id/recycler">
+        <item
+            android:id="@+id/recycler_view"
+            android:title="Students info Recycler view" />
+
+    </group>
 </menu>
