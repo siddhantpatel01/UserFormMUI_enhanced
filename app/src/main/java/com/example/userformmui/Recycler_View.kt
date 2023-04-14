@@ -1,5 +1,6 @@
 package com.example.userformmui
 
+import android.content.Intent
 import android.database.Cursor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,14 +8,17 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.userformmui.Adapters.Recycler_view_adapter
 import com.example.userformmui.Factory.Sqlite_Factory
+import com.example.userformmui.Interface.Recycler_listner
 import com.example.userformmui.Model.SqlViewModel
 import com.example.userformmui.Model.Student_Info
 import com.example.userformmui.databinding.ActivityRecyclerViewBinding
+import com.example.userformmui.databinding.ActivityUserDetailsBinding
 import com.example.userformmui.repository.Sqlite_DB_Repo
 
-class Recycler_View : AppCompatActivity() {
+class Recycler_View : AppCompatActivity(), Recycler_listner {
     lateinit var binding: ActivityRecyclerViewBinding
     private lateinit var ViewModel: SqlViewModel
     lateinit var Factory: Sqlite_Factory
@@ -26,14 +30,16 @@ class Recycler_View : AppCompatActivity() {
         Factory = Sqlite_Factory(Sqlite_DB_Repo(this))
         ViewModel = ViewModelProvider(this, Factory)[SqlViewModel::class.java]
 
+        supportActionBar?.title = "Registered Students"
 
         setRecyclerview()
+        myAdapter.setOnItemClickListener(this)
 
     }
 
     private fun setRecyclerview() {
-//        binding.recyclerView.layoutManager = LinearLayoutManager(this)
-        binding.recyclerViewss.layoutManager = GridLayoutManager(this, 2)
+        binding.recyclerViewss.layoutManager = LinearLayoutManager(this)
+        //binding.recyclerViewss.layoutManager = GridLayoutManager(this, 2)
         myAdapter = Recycler_view_adapter(getAllData(), this)
         binding.recyclerViewss.adapter = myAdapter
         myAdapter.notifyDataSetChanged()
@@ -61,6 +67,11 @@ class Recycler_View : AppCompatActivity() {
             Toast.makeText(this, "Something went wrong.", Toast.LENGTH_SHORT).show()
         }
         return listofStudent
+    }
+
+    override fun onItemClick(position: Int, student: Student_Info) {
+        Toast.makeText(this, "clicked $position", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this,User_details::class.java))
     }
 
 }

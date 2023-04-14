@@ -37,12 +37,13 @@ class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickLi
         ViewModel = ViewModelProvider(this, Factory)[SqlViewModel::class.java]
         val ListofStudent = ViewModel.getAllData()
 
+        supportActionBar?.title = "Registered Students"
         val myAdapter = ListViewAdapter(ListofStudent)
         binding.listViewUserInfo.adapter = myAdapter
 
 
         registerForContextMenu(binding.listViewUserInfo)
-        binding.listViewUserInfo.setOnItemLongClickListener(this)
+        binding.listViewUserInfo.onItemLongClickListener = this
         setListview()
 
         //binding.listViewUserInfo.setOnItemClickListener(this)
@@ -157,7 +158,7 @@ class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickLi
         val myAdapter = ListViewAdapter(listOfStudents)
         binding.listViewUserInfo.adapter = myAdapter
         registerForContextMenu(binding.listViewUserInfo)
-        binding.listViewUserInfo.setOnItemLongClickListener(this)
+        binding.listViewUserInfo.onItemLongClickListener = this
 
        // binding.listViewUserInfo.setOnItemClickListener(this)
     }

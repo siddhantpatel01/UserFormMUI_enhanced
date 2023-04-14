@@ -4,15 +4,17 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView.RecyclerListener
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.example.userformmui.Interface.Recycler_listner
 import com.example.userformmui.Model.Student_Info
 import com.example.userformmui.R
-import com.example.userformmui.Student_info_Activity
 import com.example.userformmui.databinding.LayoutitemsBinding
 
 class Recycler_view_adapter (private val listOfStudent: List<Student_Info>, private val context: Context) : RecyclerView.Adapter<Recycler_view_adapter.MyViewHolder>() {
 
+    private lateinit var onItemClickListener: Recycler_listner
     inner class MyViewHolder(var binding: LayoutitemsBinding): RecyclerView.ViewHolder(binding.root)
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -31,9 +33,15 @@ class Recycler_view_adapter (private val listOfStudent: List<Student_Info>, priv
             this.Lname.text = student.LastName
             this.Phone.text = student.phone
             this.AlterPhone.text = student.altPhones
-            this.Gender .text = student.genders
-            this.Gmail .text = student.emails
+            this.Gender.text = student.genders
+            this.Gmail.text = student.emails
 
+
+            holder.itemView.setOnClickListener {
+                if (onItemClickListener != null) {
+                    onItemClickListener.onItemClick(position, listOfStudent[position])
+                }
+            }
         }
 
 
@@ -41,5 +49,9 @@ class Recycler_view_adapter (private val listOfStudent: List<Student_Info>, priv
 
     override fun getItemCount(): Int {
         return listOfStudent.size
+    }
+
+    fun setOnItemClickListener(onItemClickListener:Recycler_listner ) {
+        this.onItemClickListener = onItemClickListener
     }
 }
