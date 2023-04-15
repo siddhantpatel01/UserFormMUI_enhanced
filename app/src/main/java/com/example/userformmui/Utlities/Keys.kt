@@ -6,6 +6,7 @@ class Keys {
         val LNAME = "lName"
         val MOBNO = "phonenumber"
         val Usertype = "usertype"
+        val StudentsingleRecord = "Student_Sigle_Record"
 
 
     }

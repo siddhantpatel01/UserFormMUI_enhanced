@@ -14,13 +14,16 @@ import com.example.userformmui.Factory.Sqlite_Factory
 import com.example.userformmui.Interface.Recycler_listner
 import com.example.userformmui.Model.SqlViewModel
 import com.example.userformmui.Model.Student_Info
+import com.example.userformmui.Utlities.Keys
 import com.example.userformmui.databinding.ActivityRecyclerViewBinding
 import com.example.userformmui.databinding.ActivityUserDetailsBinding
 import com.example.userformmui.repository.Sqlite_DB_Repo
+import com.google.gson.Gson
 
 class Recycler_View : AppCompatActivity(), Recycler_listner {
     lateinit var binding: ActivityRecyclerViewBinding
     private lateinit var ViewModel: SqlViewModel
+    lateinit var listofStudent : ArrayList<Student_Info>
     lateinit var Factory: Sqlite_Factory
     private lateinit var cursor: Cursor
     private lateinit var myAdapter: Recycler_view_adapter
@@ -47,7 +50,7 @@ class Recycler_View : AppCompatActivity(), Recycler_listner {
 
     fun getAllData(): ArrayList<Student_Info>{
         cursor = ViewModel.getData()
-        var listofStudent = ArrayList<Student_Info>()
+         listofStudent = ArrayList<Student_Info>()
 
         if(cursor.count/*Count return number of row in Cursor*/>0){
             cursor.moveToFirst()
@@ -71,7 +74,11 @@ class Recycler_View : AppCompatActivity(), Recycler_listner {
 
     override fun onItemClick(position: Int, student: Student_Info) {
         Toast.makeText(this, "clicked $position", Toast.LENGTH_SHORT).show()
-        startActivity(Intent(this,User_details::class.java))
+        var intent = Intent(this,User_details::class.java)
+
+        var student = listofStudent[position]
+        intent.putExtra(Keys.StudentsingleRecord,Gson().toJson(student))
+        startActivity(intent)
     }
 
 }
