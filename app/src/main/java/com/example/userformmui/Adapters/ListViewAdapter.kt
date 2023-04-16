@@ -34,9 +34,6 @@ class ListViewAdapter(private val ListofStudent: ArrayList<Student_Info>) : Base
         binding!!.fname.text = ListofStudent[position].FirstNamee
         binding!!.Lname.text = ListofStudent[position].LastName
         binding!!.Phone.text = ListofStudent[position].phone
-        binding!!.AlterPhone.text = ListofStudent[position].altPhones
-        binding!!.Gmail.text= ListofStudent[position].emails
-        binding!!.Gender.text = ListofStudent[position].genders
         return view
 
     }

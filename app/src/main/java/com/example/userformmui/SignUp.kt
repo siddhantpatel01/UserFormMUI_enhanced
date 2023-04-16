@@ -14,7 +14,8 @@ import com.example.userformmui.Model.SharedPrefrenceViewmodel
 import com.example.userformmui.databinding.ActivitySignUpBinding
 import com.example.userformmui.repository.SharedPreferenceRepo
 
-class SignUp : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
+class SignUp : AppCompatActivity(), View.OnClickListener,
+    AdapterView.OnItemClickListener {
     private lateinit var binding: ActivitySignUpBinding
     lateinit var viewmodelFactory: SharedPrefViewmodelFactory
     lateinit var viewmodel: SharedPrefrenceViewmodel
@@ -43,9 +44,16 @@ class SignUp : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSele
 
         /*Adapter : - Adapter is a bridge element between data and view
         * Spinner and autoComplete & Multi AutoComplete  : - are uses ArrayAdapter*/
-        val dataAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data)
-        binding.spinner.adapter = dataAdapter
-        binding.spinner.onItemSelectedListener = this
+//        val dataAdapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data)
+//        binding.spinner.adapter = dataAdapter
+//        binding.spinner.onItemSelectedListener = this
+
+
+        val Usertype = resources.getStringArray(R.array.user_type)
+        val arrayAdapter = ArrayAdapter(this,R.layout.user_type_drop_down,Usertype)
+        binding.autoCompletes.setAdapter(arrayAdapter)
+        binding.autoCompletes.setOnItemClickListener(this)
+
 
         viewmodel.getFirstname()
         binding.signUp.setOnClickListener {
@@ -85,13 +93,17 @@ class SignUp : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSele
 
     }
 
-    override fun onItemSelected(adapter: AdapterView<*>?, view: View?, position: Int, id: Long) {
-        val data = adapter?.getItemAtPosition(position)
+//    override fun onItemSelected(adapter: AdapterView<*>?, view: View?, position: Int, id: Long) {
+//        val data = adapter?.getItemAtPosition(position)
+//        userTypess = data.toString()
+//        Toast.makeText(this, "You are selected $data", Toast.LENGTH_SHORT).show()
+//    }
+
+
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        val data = parent?.getItemAtPosition(position)
         userTypess = data.toString()
         Toast.makeText(this, "You are selected $data", Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onNothingSelected(adapter: AdapterView<*>?) {
-
     }
 }

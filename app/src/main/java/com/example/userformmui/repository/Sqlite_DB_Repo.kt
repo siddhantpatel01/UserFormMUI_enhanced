@@ -10,7 +10,7 @@ import com.example.userformmui.Model.Student_Info
 
 
 private const val DBNAME = "StudentInfo"
-private const val DB_VERSION = 7
+private const val DB_VERSION = 9
 private const val TABLE_NAME = "Student"
 private const val FIRSTNAME = "FirstName"
 private const val LASTNAME = "LastName"
@@ -20,11 +20,12 @@ private const val AltPhone = "AlternativePhone "
 private const val email = "Email"
 private const val gender = "Gender"
 private const val Course =  "course"
+private const val dob = "DOB"
 
 class Sqlite_DB_Repo(private val context: Context) {
     /*
         Query for creating table*/
-    val query = "CREATE TABLE $TABLE_NAME($SRNO INTEGER PRIMARY KEY AUTOINCREMENT, $FIRSTNAME TEXT, $LASTNAME TEXT, $PHONE TEXT , $AltPhone TEXT ,$email  TEXT,$gender TEXT    )"
+    val query = "CREATE TABLE $TABLE_NAME($SRNO INTEGER PRIMARY KEY AUTOINCREMENT, $FIRSTNAME TEXT, $LASTNAME TEXT, $PHONE TEXT , $AltPhone TEXT ,$email  TEXT,$gender TEXT ,  $dob TEXT , $Course TEXT   )"
 
     /* Create Object of DBHelper Inner class because of :-  if repo is accessed by ViewModel or Factory here Sqlite Db repo is goes,  not will going inner class ,
        Inner class Functionality should be accessed by outer class , i.e why need of and object
@@ -36,7 +37,7 @@ class Sqlite_DB_Repo(private val context: Context) {
 
 
     /*This piece of code for creating data*/
-    fun createData(fName: String, lName: String, phone: String , phone1 : String , mail : String , Gender : String ) {
+    fun createData(fName: String, lName: String, phone: String , phone1 : String , mail : String , Gender : String , DOB : String , course : String ) {
         val contentValue = ContentValues()
         contentValue.put(FIRSTNAME, fName)
         contentValue.put(LASTNAME, lName)
@@ -44,6 +45,8 @@ class Sqlite_DB_Repo(private val context: Context) {
         contentValue.put(AltPhone,phone1)
         contentValue.put(email , mail)
         contentValue.put(gender,Gender)
+        contentValue.put(dob,DOB)
+        contentValue.put(Course,course)
         val id: Long = sqliteDb.insert(TABLE_NAME, null, contentValue)
         if (id > 0) {
             Toast.makeText(context, "Data Saved Successfully.", Toast.LENGTH_SHORT).show()
@@ -55,7 +58,7 @@ class Sqlite_DB_Repo(private val context: Context) {
     // This Function is use to get all data from database
     fun getAllData(): ArrayList<Student_Info>{
         var listofStudent = ArrayList<Student_Info>()
-        val array = arrayOf(SRNO, FIRSTNAME, LASTNAME, PHONE, AltPhone, email, gender)
+        val array = arrayOf(SRNO, FIRSTNAME, LASTNAME, PHONE, AltPhone, email, gender, dob , Course)
         val cursor = sqliteDb.query(TABLE_NAME,array,null,null,null,null,null)
         if(cursor.count/*Count return number of row in Cursor*/>0){
             cursor.moveToFirst()
@@ -67,8 +70,10 @@ class Sqlite_DB_Repo(private val context: Context) {
                 val altPhones = cursor.getString(4)
                 val emails = cursor.getString(5)
                 val genders = cursor.getString(6)
+                val dob = cursor.getString(7)
+                val course = cursor.getString(8)
 
-                val Student = Student_Info(SRNO,FirstName,LastName,phone, altPhones , emails , genders   )
+                val Student = Student_Info(SRNO,FirstName,LastName,phone, altPhones , emails , genders,dob,course)
                 listofStudent.add(Student)
 
             }while (cursor.moveToNext())
@@ -122,7 +127,7 @@ class Sqlite_DB_Repo(private val context: Context) {
     }
 
     fun getData(): Cursor {
-        val array = arrayOf(SRNO, FIRSTNAME, LASTNAME, PHONE, AltPhone, email, gender)
+        val array = arrayOf(SRNO, FIRSTNAME, LASTNAME, PHONE, AltPhone, email, gender, dob, Course)
         return sqliteDb.query(TABLE_NAME, array, null, null, null, null, null)
     }
 }

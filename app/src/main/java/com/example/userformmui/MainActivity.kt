@@ -1,17 +1,17 @@
 package com.example.userformmui
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.ArrayAdapter
-import android.widget.CompoundButton
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.MenuCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
@@ -19,13 +19,19 @@ import com.example.userformmui.Factory.SharedPrefViewmodelFactory
 import com.example.userformmui.Factory.Sqlite_Factory
 import com.example.userformmui.Model.SharedPrefrenceViewmodel
 import com.example.userformmui.Model.SqlViewModel
+import com.example.userformmui.Model.Student_Info
+import com.example.userformmui.Utlities.Keys
 import com.example.userformmui.databinding.ActivityMainBinding
-import com.example.userformmui.databinding.ActivityStudentInfoBinding
 import com.example.userformmui.repository.SharedPreferenceRepo
 import com.example.userformmui.repository.Sqlite_DB_Repo
+import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.gson.Gson
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
-class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnCheckedChangeListener,
-    CompoundButton.OnCheckedChangeListener {
+
+class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnCheckedChangeListener {
     private lateinit var binding: ActivityMainBinding
     lateinit var viewmodel: SharedPrefrenceViewmodel
     val list: ArrayList<String> = ArrayList()
@@ -38,31 +44,34 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-//        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
-//        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.white));// set status background white
-        // This peace of code for Submit Button
-        binding.submit.setOnClickListener(this)
+        val courses = resources.getStringArray(R.array.Coursees)
+        val arrayAdapter = ArrayAdapter(this,R.layout.drop_down_items,courses)
+        binding.autoCompletes.setAdapter(arrayAdapter)
 
+        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.white));// set status background white
+        // This peace of code for Submit Button
+        binding.dob.setOnClickListener(this)
+        binding.submit.setOnClickListener(this)
         // This peace of code for Radio Button
         binding.radioButton.setOnCheckedChangeListener(this)
 
         // This peace of code for Check Box
-        binding.Coding.setOnCheckedChangeListener(this)
-        binding.readingBook.setOnCheckedChangeListener(this)
-        binding.movies.setOnCheckedChangeListener(this)
         viewmodelFactory = SharedPrefViewmodelFactory(SharedPreferenceRepo,this)
         viewmodel = ViewModelProvider(this, viewmodelFactory)[SharedPrefrenceViewmodel::class.java]
 
-        binding.Playing.setOnCheckedChangeListener(this)
-        binding.traveling.setOnCheckedChangeListener(this)
 
         Factory = Sqlite_Factory(Sqlite_DB_Repo(this))
+
         ViewModel = ViewModelProvider(this, Factory)[SqlViewModel::class.java]
+
         val ListofStudent = ViewModel.getAllData()
-        Log.d("ListofStudent", "onCreate: $ListofStudent ")
+
+
         binding.usertype.setText(viewmodel.getUsertpe()).toString()
+       
 
-
+     // binding.usertype.setText( intent.getStringExtra("usertype "))
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -158,12 +167,40 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                         binding.UserLastname.editText?.text.toString(),
                         binding.Phone.editText?.text.toString(),
                         binding.PhoneA.editText?.text.toString(),
-                        binding.emaillayout.editText?.text.toString(),
-                        gender!!
+                        binding.emaillayout.editText?.text.toString(),binding.DobLayout.editText?.text.toString(),
+                        gender!!,binding.CourseLayout.editText?.text.toString()
                     )
 
                 }
             }
+            R.id.dob ->{
+                MaterialDatePicker.Builder.datePicker().build()
+                    .show(supportFragmentManager, "DATE PICKER")
+                val datePickerBuilder = MaterialDatePicker.Builder.datePicker()
+                datePickerBuilder.setTitleText("SELECT UR DOB")
+                val datePicker = datePickerBuilder.build()
+
+
+                datePicker.show(supportFragmentManager, "DATE")
+                datePicker.addOnPositiveButtonClickListener {
+                    val calender = Calendar.getInstance()
+                    calender.time = Date(it)
+                    val DAY = calender.get(Calendar.DAY_OF_MONTH)
+                    val MONTH = calender.get(Calendar.MONTH) + 1
+                    val YEAR = calender.get(Calendar.YEAR)
+
+                  //  Toast.makeText(this@MainActivity, "$DAY / $MONTH / $YEAR", Toast.LENGTH_SHORT).show()
+                    val simpelDateFormat = SimpleDateFormat("dd/MM/yyyy")
+                    val selectedDate = simpelDateFormat.format(Date(it))
+                    binding.dob.setText(selectedDate)
+                  //  Toast.makeText(this@MainActivity, "You have selected: $selectedDate", Toast.LENGTH_SHORT).show()
+
+
+                }
+
+            }
+
+
 
         }
     }
@@ -183,56 +220,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                 gender = rbtransgender.text.toString()
             }
 
-        }
-    }
-
-    override fun onCheckedChanged(buttonView: CompoundButton?, isChecked: Boolean) {
-        when (buttonView?.id) {
-            R.id.Coding -> {
-                if (binding.Coding.isChecked) {
-                    list.add(binding.Coding.text.toString())
-                    // list.toString().replace("[", "").replace("]", "");
-                } else {
-                    list.remove(binding.Coding.text.toString())
-                }
-
-            }
-            R.id.readingBook -> {
-                if (binding.readingBook.isChecked) {
-                    list.add(binding.readingBook.text.toString())
-
-                } else {
-                    list.remove(binding.readingBook.text.toString())
-                }
-
-            }
-            R.id.movies -> {
-                if (binding.movies.isChecked) {
-                    list.add(binding.movies.text.toString())
-                    // list.toString().replace("[", "").replace("]", "");
-                } else {
-                    list.remove(binding.movies.text.toString())
-                }
-
-            }
-            R.id.Playing -> {
-                if (binding.Playing.isChecked) {
-                    list.add(binding.Playing.text.toString())
-                    // list.toString().replace("[", "").replace("]", "");
-                } else {
-                    list.remove(binding.Playing.text.toString())
-                }
-
-            }
-            R.id.traveling -> {
-                if (binding.traveling.isChecked) {
-                    list.add(binding.traveling.text.toString())
-                    // list.toString().replace("[", "").replace("]", "");
-                } else {
-                    list.remove(binding.traveling.text.toString())
-                }
-
-            }
         }
     }
 }

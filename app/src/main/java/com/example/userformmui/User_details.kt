@@ -24,8 +24,11 @@ class User_details : AppCompatActivity() {
         binding.Lname.text = student.LastName
         binding.AlterPhone.text = student.altPhones
         binding.Gmail.text = student.emails
-        binding.Gmail.text = student.genders
+        binding.gender.text = student.genders
         binding.Phone.text = student.phone
+        binding.Dob.text = student.dob
+        binding.Coursess.text = student.course
 
     }
+
 }

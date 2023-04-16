@@ -61,9 +61,11 @@ class Recycler_View : AppCompatActivity(), Recycler_listner {
                 val phone = cursor.getString(3)
                 val altPhones = cursor.getString(4)
                 val emails = cursor.getString(5)
-                val genders = cursor.getString(6)
+                val dob = cursor.getString(6)
+                val genders = cursor.getString(7)
+                val course = cursor.getString(8)
 
-                val Student = Student_Info(SRNO,FirstName,LastName,phone, altPhones , emails , genders   )
+                val Student = Student_Info(SRNO,FirstName,LastName,phone, altPhones , emails , genders ,dob , course )
                 listofStudent.add(Student)
             }while (cursor.moveToNext())
         }else{

@@ -16,9 +16,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-
+            android:layout_height="match_parent"
+            tools:context=".MainActivity">
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/profile_image"
                 android:layout_width="150dp"
@@ -167,13 +166,34 @@
                     android:maxLines="1" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/Dob_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/PhoneA"
+                android:layout_margin="10dp"
+                app:endIconDrawable="@drawable/baseline_calendar_month_24"
+                app:endIconMode="custom"
+                app:layout_constraintTop_toBottomOf="@id/emaillayout"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded"
+                >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Select Your DOB"
+                    android:inputType="none"
+                    android:maxLines="1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/radiobutton"
                 android:layout_width="match_parent"
-                app:layout_constraintTop_toBottomOf="@id/emaillayout"
+                app:layout_constraintTop_toBottomOf="@id/Dob_layout"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/emaillayout"
                 android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -218,139 +238,32 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/hobbies"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_below="@id/radiobutton"
-                android:visibility="gone"
+                android:id="@+id/Course_layout"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_margin="10dp"
+                app:startIconDrawable="@drawable/baseline_school_24"
                 app:layout_constraintTop_toBottomOf="@id/radiobutton"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:background="@drawable/blue_border_rounded_cornwe1"
-                android:gravity="center">
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded"
 
-                <com.google.android.material.textview.MaterialTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Course"
-                    android:textStyle="bold"
-                    android:textColor="@color/black">
-
-                </com.google.android.material.textview.MaterialTextView>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/codingLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/hobbies"
-                android:visibility="gone"
-                android:layout_margin="10dp"
-                app:layout_constraintStart_toStartOf="parent"
-
-                android:layout_marginTop="10dp">
-
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/Coding"
-                    android:layout_width="100dp"
+                >
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompletes"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:text="B-Tech" />
+                    android:inputType="none"
+                    android:text="Select Your Course">
+                </AutoCompleteTextView>
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/readingbookLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/hobbies"
-                app:layout_constraintLeft_toRightOf="@id/codingLayout"
-                android:layout_below="@id/hobbies"
-                android:layout_margin="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-
-                >
-
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/readingBook"
-                    android:layout_width="130dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="BCA" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/playingLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_below="@id/hobbies"
-                app:layout_constraintTop_toBottomOf="@id/hobbies"
-                app:layout_constraintLeft_toRightOf="@id/readingbookLayout"
-                android:layout_margin="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/readingbookLayout"
-
-                >
-
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/Playing"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="MBBS" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/watchingmoviesLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/codingLayout"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_below="@id/codingLayout"
-                android:layout_margin="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp">
-
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:id="@+id/movies"
-                    android:layout_width="170dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="POLYTECHNIC" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/travelingLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:layout_below="@id/codingLayout"
-                app:layout_constraintTop_toBottomOf="@id/codingLayout"
-                app:layout_constraintLeft_toRightOf="@id/watchingmoviesLayout"
-                android:layout_margin="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_toRightOf="@id/watchingmoviesLayout">
-
-                <com.google.android.material.checkbox.MaterialCheckBox
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/traveling"
-                    android:gravity="center"
-                    android:text="BAMS" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/submit"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
-                app:layout_constraintTop_toBottomOf="@id/watchingmoviesLayout"
+                app:layout_constraintTop_toBottomOf="@id/Course_layout"
                 android:layout_marginStart="60dp"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/black"
@@ -361,7 +274,6 @@
                 app:cornerRadius="40dp">
 
             </com.google.android.material.button.MaterialButton>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

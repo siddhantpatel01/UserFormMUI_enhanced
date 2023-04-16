@@ -7,85 +7,235 @@
     </data>
 
 
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="30dp"
-        android:backgroundTint="#A6A6A6">
+        android:layout_height="match_parent"
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="@color/material_dynamic_primary100"
+        android:padding="10dp"
+        android:layout_margin="10dp">
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="5dp">
-            <TextView
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profile_image"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/profile"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="@style/ShapeAppearance.App.CircleImageView" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/usernames"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:textSize="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="User name"
+                app:layout_constraintTop_toBottomOf="@id/profile_image">
+
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/fname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="100dp"
                 android:text="First Name"
                 android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintLeft_toRightOf="@id/usernames"
+                app:layout_constraintTop_toBottomOf="@id/profile_image">
 
-            </TextView>
+            </com.google.android.material.textview.MaterialTextView>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/Lname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:text="Last Name"
                 android:textSize="18dp"
-                app:layout_constraintLeft_toRightOf="@+id/fname"
-                app:layout_constraintTop_toTopOf="parent">
-            </TextView>
+                android:layout_marginTop="20dp"
+                app:layout_constraintLeft_toRightOf="@id/fname"
+                app:layout_goneMarginLeft="3dp"
+                app:layout_constraintTop_toBottomOf="@id/profile_image"
+                >
+            </com.google.android.material.textview.MaterialTextView>
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/Phone1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/usernames"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Phone"
+                android:textSize="20dp"
+
+                >
+
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/Phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
                 android:text="Phone"
+                android:layout_marginLeft="139dp"
+
+                android:layout_marginTop="10dp"
                 android:textSize="18dp"
-                app:layout_constraintLeft_toRightOf="@+id/Lname"
-                app:layout_constraintTop_toTopOf="parent">
-            </TextView>
+                app:layout_constraintLeft_toRightOf="@id/Phone1"
+
+                app:layout_constraintTop_toBottomOf="@id/Lname">
+            </com.google.android.material.textview.MaterialTextView>
 
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/Phone2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/Phone1"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Alt Phone "
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="20dp">
+
+            </com.google.android.material.textview.MaterialTextView>
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/AlterPhone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="100dp"
+                android:layout_marginTop="10dp"
                 android:text="Alternative Phone"
                 android:textSize="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Phone"></TextView>
+                app:layout_constraintLeft_toRightOf="@id/Phone2"
+                app:layout_constraintTop_toBottomOf="@+id/Phone">
 
-            <TextView
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/emails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintTop_toBottomOf="@id/Phone2"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="Email"
+                />
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/Gmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="15dp"
                 android:text="Email"
                 android:textSize="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/AlterPhone"></TextView>
+                app:layout_constraintLeft_toRightOf="@id/emails"
+                app:layout_constraintTop_toBottomOf="@+id/AlterPhone">
 
-            <TextView
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/Gender"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:text="Gender"
-                android:textSize="16dp"
+                android:layout_marginLeft="10dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Gmail"></TextView>
+                android:textSize="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/Gmail">
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toRightOf="@id/Gender"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="140dp"
+                app:layout_constraintTop_toBottomOf="@id/Gmail">
+
+
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="DOB"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/gender">
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/Dob"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DOB"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toRightOf="@id/Gender"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="140dp"
+                app:layout_constraintTop_toBottomOf="@id/Gender">
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/Course"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Course"
+                android:layout_marginLeft="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="20dp"
+                app:layout_constraintTop_toBottomOf="@+id/Dob">
+            </com.google.android.material.textview.MaterialTextView>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/Coursess"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Course"
+                android:textSize="20dp"
+                app:layout_constraintLeft_toRightOf="@id/Course"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="140dp"
+                app:layout_constraintTop_toBottomOf="@id/Dob">
+            </com.google.android.material.textview.MaterialTextView>
+
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
+
+
 </layout>

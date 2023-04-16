@@ -52,41 +52,6 @@
             </TextView>
 
 
-            <TextView
-                android:id="@+id/AlterPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="Alternative Phone"
-                android:textSize="20dp"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Phone"></TextView>
-
-            <TextView
-                android:id="@+id/Gmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="Email"
-                android:textSize="20dp"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/AlterPhone"></TextView>
-
-            <TextView
-                android:id="@+id/Gender"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp"
-                android:text="Email"
-                android:textSize="16dp"
-                android:visibility="gone"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Gmail"></TextView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

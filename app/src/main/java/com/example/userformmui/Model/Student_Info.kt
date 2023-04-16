@@ -7,5 +7,8 @@ data class Student_Info(
     val phone : String,
     val altPhones:String,
     val emails : String,
-    val genders : String
+    val genders : String,
+    val dob : String,
+    val course:String
+
 )

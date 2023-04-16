@@ -32,18 +32,12 @@ class Recycler_view_adapter (private val listOfStudent: List<Student_Info>, priv
             this.fname.text = student.FirstNamee
             this.Lname.text = student.LastName
             this.Phone.text = student.phone
-            this.AlterPhone.text = student.altPhones
-            this.Gender.text = student.genders
-            this.Gmail.text = student.emails
-
-
             holder.itemView.setOnClickListener {
                 if (onItemClickListener != null) {
                     onItemClickListener.onItemClick(position, listOfStudent[position])
                 }
             }
         }
-
 
     }
 

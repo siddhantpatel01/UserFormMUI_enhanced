@@ -11,8 +11,10 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.userformmui.Factory.SharedPrefViewmodelFactory
 import com.example.userformmui.Model.SharedPrefrenceViewmodel
+import com.example.userformmui.Utlities.Keys
 import com.example.userformmui.databinding.ActivitySignInBinding
 import com.example.userformmui.repository.SharedPreferenceRepo
+import com.google.gson.Gson
 
 
 class SignIn : AppCompatActivity(), View.OnClickListener {
@@ -41,6 +43,7 @@ class SignIn : AppCompatActivity(), View.OnClickListener {
         })
 
 
+
         binding.signIn.setOnClickListener {
             if (binding.Phone1.text!!.isEmpty()){
                 Toast.makeText(this, "Please enter phone number", Toast.LENGTH_SHORT).show()
@@ -56,7 +59,12 @@ class SignIn : AppCompatActivity(), View.OnClickListener {
     override fun onClick(view: View?) {
         when (view?.id) {
             R.id.skip -> {
-                startActivity(Intent(this, MainActivity::class.java))
+                if(viewmodel.getPhone().isEmpty()){
+                    startActivity(Intent(this,MainActivity::class.java))
+                }else{
+                    Toast.makeText(this, "You are already  logged-in", Toast.LENGTH_SHORT).show()
+                }
+
             }
             R.id.dont_Account -> {
                 startActivity(Intent(this, SignUp::class.java))

@@ -1,5 +1,29 @@
 <resources>
     <string name="app_name">UserFormMUI</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string-array name="Coursees">
+        <item>
+            B-tech
+        </item>
+        <item>
+            BCA
+        </item>
+        <item>
+            MBBS
+        </item>
+    </string-array>
+
+    <string-array name="user_type">
+        <item>
+            Guest
+        </item>
+        <item>
+            HR
+        </item>
+        <item>
+            Consultant
+        </item>
+        <item>
+            Admin
+        </item>
+    </string-array>
 </resources>

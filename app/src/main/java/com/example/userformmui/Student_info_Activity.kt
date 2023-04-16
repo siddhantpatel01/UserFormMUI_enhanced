@@ -163,7 +163,9 @@ class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickLi
        // binding.listViewUserInfo.setOnItemClickListener(this)
     }
     fun getAllData(): ArrayList<Student_Info>{
+
         cursor = ViewModel.getData()
+
         var listofStudent = ArrayList<Student_Info>()
 
         if(cursor.count/*Count return number of row in Cursor*/>0){
@@ -176,8 +178,10 @@ class Student_info_Activity : AppCompatActivity(), AdapterView.OnItemLongClickLi
                 val altPhones = cursor.getString(4)
                 val emails = cursor.getString(5)
                 val genders = cursor.getString(6)
+                val dob = cursor.getString(7)
+                val course = cursor.getString(8)
 
-                val Student = Student_Info(SRNO,FirstName,LastName,phone, altPhones , emails , genders   )
+                val Student = Student_Info(SRNO,FirstName,LastName,phone, altPhones , emails , genders ,dob,course  )
                 listofStudent.add(Student)
             }while (cursor.moveToNext())
         }else{
