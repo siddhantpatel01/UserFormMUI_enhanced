@@ -175,6 +175,7 @@
                 android:layout_margin="10dp"
                 app:endIconDrawable="@drawable/baseline_calendar_month_24"
                 app:endIconMode="custom"
+                android:focusable="false"
                 app:layout_constraintTop_toBottomOf="@id/emaillayout"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.MyApp.TextInputLayout.Rounded"
                 >
@@ -184,6 +185,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Select Your DOB"
+                    android:focusable="false"
                     android:inputType="none"
                     android:maxLines="1" />
 

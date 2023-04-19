@@ -1,8 +1,8 @@
 package com.example.userformmui
 
-import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Patterns
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -19,13 +19,10 @@ import com.example.userformmui.Factory.SharedPrefViewmodelFactory
 import com.example.userformmui.Factory.Sqlite_Factory
 import com.example.userformmui.Model.SharedPrefrenceViewmodel
 import com.example.userformmui.Model.SqlViewModel
-import com.example.userformmui.Model.Student_Info
-import com.example.userformmui.Utlities.Keys
 import com.example.userformmui.databinding.ActivityMainBinding
 import com.example.userformmui.repository.SharedPreferenceRepo
 import com.example.userformmui.repository.Sqlite_DB_Repo
 import com.google.android.material.datepicker.MaterialDatePicker
-import com.google.gson.Gson
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -48,8 +45,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
         val arrayAdapter = ArrayAdapter(this,R.layout.drop_down_items,courses)
         binding.autoCompletes.setAdapter(arrayAdapter)
 
-        getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);//  set status text dark
-        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.white));// set status background white
+        window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR//  set status text dark
+        window.statusBarColor = ContextCompat.getColor(this,R.color.white)// set status background white
         // This peace of code for Submit Button
         binding.dob.setOnClickListener(this)
         binding.submit.setOnClickListener(this)
@@ -103,7 +100,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
     override fun onClick(view: View) {
 
 
-        when (view?.id) {
+        when (view.id) {
 
             R.id.submit -> {
 
@@ -123,7 +120,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                     binding.Phone1.requestFocus()
                     Toast.makeText(this, "Please fill your Phone Number name", Toast.LENGTH_SHORT)
                         .show()
-                }/* else if (binding.Phone2.editableText.isEmpty()) {
+                } else if (binding.Phone2.editableText.isEmpty()) {
                     binding.Phone2.requestFocus()
                     Toast.makeText(
                         this,
@@ -136,12 +133,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
 
                 } else if (gender == null) {
                     Toast.makeText(this, "Please select your gender", Toast.LENGTH_SHORT).show()
-                }
-                else if (binding.Firstname.text!!.isNotEmpty() && binding.Lastname.text!!.isNotEmpty() && binding.Phone1.editableText.isNotEmpty() && binding.Phone2.editableText.isNotEmpty() && binding.email.text!!.isNotEmpty() && (phone1==phone2)) {
-                    Toast.makeText(this, "Please don't enter the same number", Toast.LENGTH_SHORT).show()
+                } else if (binding.Firstname.text!!.isNotEmpty() && binding.Lastname.text!!.isNotEmpty() && binding.Phone1.editableText.isNotEmpty() && binding.Phone2.editableText.isNotEmpty() && binding.email.text!!.isNotEmpty() && (binding.Phone1.text.toString() == binding.Phone2.text.toString())) {
+                    Toast.makeText(this, "Please don't enter the same number", Toast.LENGTH_SHORT)
+                        .show()
 
-                }*/
-                else {
+                } else if (binding.dob.text!!.isEmpty()) {
+                    Toast.makeText(this, "Please Select your dob", Toast.LENGTH_SHORT).show()
+                } else {
 
                     /* val intent = Intent(this, UserInformation::class.java)
                      val firstname = binding.Firstname.editableText.toString()
@@ -161,16 +159,22 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, RadioGroup.OnChe
                      intent.putExtra("gender", gender)
                      intent.putExtra("hobbies", lst)
  */
+                    if (Patterns.EMAIL_ADDRESS.matcher(binding.email.text.toString()).matches()) {
 
-                    ViewModel.createData(
-                        binding.username.editText?.text.toString(),
-                        binding.UserLastname.editText?.text.toString(),
-                        binding.Phone.editText?.text.toString(),
-                        binding.PhoneA.editText?.text.toString(),
-                        binding.emaillayout.editText?.text.toString(),binding.DobLayout.editText?.text.toString(),
-                        gender!!,binding.CourseLayout.editText?.text.toString()
-                    )
+                        ViewModel.createData(
+                            binding.username.editText?.text.toString(),
+                            binding.UserLastname.editText?.text.toString(),
+                            binding.Phone.editText?.text.toString(),
+                            binding.PhoneA.editText?.text.toString(),
+                            binding.emaillayout.editText?.text.toString(),
+                            binding.DobLayout.editText?.text.toString(),
+                            gender!!,
+                            binding.CourseLayout.editText?.text.toString()
+                        )
+                    }else{
+                        binding.email.error = "Invalid Email"
 
+                    }
                 }
             }
             R.id.dob ->{
